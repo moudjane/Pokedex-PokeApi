@@ -25,14 +25,14 @@ export default function PokemonDetailScreen({ route }) {
 
     return (
         <View>
-            <Text style={styles.name}>{details.name}</Text>
+            <Text style={styles.name}>{details.name.charAt(0).toUpperCase() + details.name.slice(1)}</Text>
+            <Text style={styles.id}>Pokemon n°{details.id}</Text>
             <Text style={styles.stats}>HP: {getStatValue('hp')}</Text>
             <Text style={styles.stats}>Attack: {getStatValue('attack')}</Text>
             <Text style={styles.stats}>Defense: {getStatValue('defense')}</Text>
             <Text style={styles.stats}>Height: {details.height}</Text>
             <Text style={styles.stats}>Weight: {details.weight}</Text>
             <Text style={styles.stats}>Types: {details.types.map((type) => type.type.name).join(', ')}</Text>
-
             <Image source={{ uri: details.sprites.front_default }} style={styles.image} />
         </View>
     );
@@ -43,6 +43,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
+        marginBottom: 10,
+    },
+    id: {
+        fontSize: 15,
+        textAlign: 'center',
+        marginBottom: 10,
     },
     stats: {
         fontSize: 15,

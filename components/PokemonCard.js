@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, ActivityIndicator } from 'react-native';
+import typeColors from './PokemonTypes';
 
 export default function PokemonCard({ pokemon }) {
     const [pokemonDetails, setPokemonDetails] = useState(null);
@@ -20,12 +21,12 @@ export default function PokemonCard({ pokemon }) {
     return (
         <View style={styles.card}>
             <View style={styles.title}>
-                <Text style={styles.name}>{pokemonDetails.name}</Text>
+                <Text style={styles.name}>{pokemonDetails.name.charAt(0).toUpperCase() + pokemonDetails.name.slice(1)}</Text>
             </View>
             <Image source={{ uri: pokemonDetails.sprites.front_default }} style={styles.imagePokemon} />
             <View style={styles.types}>
                 {pokemonDetails.types.map((typeData, index) => (
-                    <View key={index} style={styles.typeContainer}>
+                    <View key={index} style={[styles.typeContainer, { backgroundColor: typeColors[typeData.type.name] }]}>
                         <Text style={styles.typeText}>{typeData.type.name}</Text>
                     </View>
                 ))}
@@ -59,7 +60,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     typeContainer: {
-        backgroundColor: '#ffcc00',
         borderRadius: 20,
         paddingHorizontal: 10,
         paddingVertical: 5,

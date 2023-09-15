@@ -28,7 +28,7 @@ export default function Home() {
         <View style={styles.container}>
             <TextInput
                 style={styles.searchInput}
-                placeholder="Search by name or type..."
+                placeholder="Search by name..."
                 value={searchText}
                 onChangeText={(text) => setSearchText(text)}
             />
