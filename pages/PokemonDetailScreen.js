@@ -18,12 +18,21 @@ export default function PokemonDetailScreen({ route }) {
         return <Text>Loading...</Text>;
     }
 
+    const getStatValue = (statName) => {
+        const stat = details.stats.find((s) => s.stat.name === statName);
+        return stat ? stat.base_stat : 0;
+    };
+
     return (
-        <View> 
+        <View>
             <Text style={styles.name}>{details.name}</Text>
+            <Text style={styles.stats}>HP: {getStatValue('hp')}</Text>
+            <Text style={styles.stats}>Attack: {getStatValue('attack')}</Text>
+            <Text style={styles.stats}>Defense: {getStatValue('defense')}</Text>
             <Text style={styles.stats}>Height: {details.height}</Text>
             <Text style={styles.stats}>Weight: {details.weight}</Text>
             <Text style={styles.stats}>Types: {details.types.map((type) => type.type.name).join(', ')}</Text>
+
             <Image source={{ uri: details.sprites.front_default }} style={styles.image} />
         </View>
     );
@@ -40,8 +49,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     image: {
-        width: 300,
-        height: 300,
+        width: 250,
+        height: 250,
         alignSelf: 'center',
     },
 });
